@@ -60,12 +60,7 @@ namespace AgendaLista
 
         public void Busca(string buscarContato)
         {
-            if (Vazia())
-            {
-                Console.WriteLine("-----Nenhum Contato Cadastrado-----");
-            }
-            else
-            {
+            //Verificação ja foi feita no menu
                 Console.Clear();
                 Contato aux = Head;
                 bool achei = false;
@@ -82,8 +77,8 @@ namespace AgendaLista
                         } while (telefones != null);
                         achei = true;
                     }
-                    else if (aux.Nome.ToLower().Contains(buscarContato)) // busca de nomes iguais -> Contains vai verificar se é totalmente ==
-                    {
+                    else if (aux.Nome.ToLower().Contains(buscarContato)) // busca de nomes que contem o pesquisado -> Contains vai verificar se existe o busca dentro do nome
+                    {                                                    //ex: fabio zenatti e fabio moreira -> busca = fabio -> retorna os 2 contatos
                         Console.WriteLine(aux.ToString());
                         Telefone telefones = aux.Telefones.Head;
                         do
@@ -100,17 +95,11 @@ namespace AgendaLista
                     Console.WriteLine("Nenhum contato com este nome encontrado");
                 }
                 Console.ReadKey();
-            }
         }
 
         public void Pop(string removerContato)
         {
-            if (Vazia())
-            {
-                Console.WriteLine("-----Não Há contatos Cadastrados ----- ");
-            }
-            else
-            {
+            //Verificação ja foi feita no menu
                     aux1 = Head;
                     aux2 = Head;
                     bool achei = false;
@@ -149,24 +138,18 @@ namespace AgendaLista
                 }
                 else
                 {
-                    if (Vazia())
+                    if (Head == null)//Verificação "Vazio()" nao funciona pois apenas o head é null
                     {
                         Head = Tail = null; // caso a lista fique vazia com a remoção transformar tanto a cabeça quanto a cauda como null para que eles não fiquem referenciando um objeto apagado
-                    }                                        
-                    
+                    }
+
                 }
-            }
 
         }
 
         public void Editar(string editarContato)
         {
-            if (Vazia())
-            {
-                Console.WriteLine("-----Não Há contatos Cadastrados -----");
-            }
-            else
-            {
+            //Verificação ja foi feita no menu
                 Contato aux = Head;
                 int opcao;
 
@@ -245,17 +228,11 @@ namespace AgendaLista
                     }
                     aux = aux.Proximo;
                 } while (aux != null);
-            }
         }
 
         public void Print()
         {
-            if (Vazia())
-            {
-                Console.WriteLine("-----Não Há contatos Cadastrados -----");
-            }
-            else
-            {
+            //Verificação ja foi feita no menu
                 Contato aux = Head;
                 do
                 {
@@ -271,7 +248,6 @@ namespace AgendaLista
                     Console.ReadKey();
                 } while (aux != null);
                 Console.WriteLine("---------FIM---------");
-            }
         }
 
         public bool Vazia()
